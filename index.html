@@ -1,0 +1,1741 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CarbonGrid | AI Training Platform 2026</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #6366f1;
+            --primary-dark: #4f46e5;
+            --primary-light: #818cf8;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+            --dark: #0f172a;
+            --dark-light: #1e293b;
+            --gray-100: #f1f5f9;
+            --gray-200: #e2e8f0;
+            --gray-300: #cbd5e1;
+            --gray-400: #94a3b8;
+            --gray-500: #64748b;
+            --gray-600: #475569;
+            --white: #ffffff;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--gray-100);
+            color: var(--dark);
+            line-height: 1.6;
+        }
+
+        /* Navigation */
+        nav {
+            background: var(--white);
+            padding: 1rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+
+        .nav-container {
+            max-width: 1280px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+            font-size: 1.2rem;
+        }
+
+        .logo-text {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--dark);
+        }
+
+        .logo-text span {
+            color: var(--primary);
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--gray-600);
+            font-weight: 500;
+            transition: color 0.3s;
+            cursor: pointer;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .nav-buttons {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .btn {
+            padding: 0.6rem 1.5rem;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: none;
+            font-family: inherit;
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--gray-300);
+            color: var(--gray-600);
+        }
+
+        .btn-outline:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(99, 102, 241, 0.4);
+        }
+
+        .btn-success {
+            background: var(--success);
+            color: white;
+        }
+
+        .btn-success:hover {
+            background: #059669;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--dark) 0%, var(--dark-light) 100%);
+            padding: 5rem 2rem;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%239C92AC' fill-opacity='0.05'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        }
+
+        .hero-container {
+            max-width: 1280px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(99, 102, 241, 0.2);
+            border: 1px solid rgba(99, 102, 241, 0.3);
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-badge .dot {
+            width: 8px;
+            height: 8px;
+            background: var(--success);
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            max-width: 800px;
+        }
+
+        .hero h1 span {
+            background: linear-gradient(135deg, var(--primary-light), #a78bfa);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--gray-400);
+            max-width: 600px;
+            margin-bottom: 2rem;
+        }
+
+        .hero-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-top: 3rem;
+            max-width: 800px;
+        }
+
+        .stat-card {
+            background: rgba(255,255,255,0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.1);
+            padding: 1.5rem;
+            border-radius: 16px;
+        }
+
+        .stat-card .label {
+            font-size: 0.85rem;
+            color: var(--gray-400);
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-card .value {
+            font-size: 2rem;
+            font-weight: 700;
+            color: white;
+        }
+
+        .stat-card .value.highlight {
+            color: var(--success);
+        }
+
+        .stat-card .subtext {
+            font-size: 0.8rem;
+            color: var(--gray-500);
+            margin-top: 0.3rem;
+        }
+
+        /* Progress Bar */
+        .progress-section {
+            background: var(--white);
+            padding: 2rem;
+            margin: -2rem 2rem 2rem;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            max-width: 1280px;
+            margin-left: auto;
+            margin-right: auto;
+            position: relative;
+            z-index: 10;
+        }
+
+        .progress-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .progress-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        .progress-numbers {
+            display: flex;
+            align-items: baseline;
+            gap: 0.5rem;
+        }
+
+        .progress-numbers .current {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .progress-numbers .total {
+            color: var(--gray-500);
+        }
+
+        .progress-bar {
+            height: 12px;
+            background: var(--gray-200);
+            border-radius: 6px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary), var(--primary-light));
+            border-radius: 6px;
+            transition: width 0.5s ease;
+            position: relative;
+        }
+
+        .progress-fill::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            animation: shimmer 2s infinite;
+        }
+
+        @keyframes shimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        .progress-info {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 0.8rem;
+            font-size: 0.85rem;
+            color: var(--gray-500);
+        }
+
+        /* Recent Applicants */
+        .applicants-section {
+            max-width: 1280px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .live-badge {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(16, 185, 129, 0.1);
+            color: var(--success);
+            padding: 0.4rem 1rem;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .live-badge .dot {
+            width: 8px;
+            height: 8px;
+            background: var(--success);
+            border-radius: 50%;
+            animation: pulse 1.5s infinite;
+        }
+
+        .applicants-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1rem;
+        }
+
+        .applicant-card {
+            background: var(--white);
+            border-radius: 12px;
+            padding: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            transition: all 0.3s;
+            border: 1px solid var(--gray-200);
+        }
+
+        .applicant-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .applicant-card.new {
+            border-color: var(--success);
+            background: rgba(16, 185, 129, 0.02);
+        }
+
+        .applicant-avatar {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            color: white;
+            font-size: 1.1rem;
+            flex-shrink: 0;
+        }
+
+        .applicant-info {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .applicant-name {
+            font-weight: 600;
+            font-size: 0.95rem;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .applicant-role {
+            font-size: 0.8rem;
+            color: var(--gray-500);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .applicant-time {
+            font-size: 0.75rem;
+            color: var(--gray-400);
+            white-space: nowrap;
+        }
+
+        .applicant-status {
+            padding: 0.3rem 0.6rem;
+            border-radius: 6px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .status-verified {
+            background: rgba(16, 185, 129, 0.1);
+            color: var(--success);
+        }
+
+        .status-pending {
+            background: rgba(245, 158, 11, 0.1);
+            color: var(--warning);
+        }
+
+        /* Jobs Section */
+        .jobs-section {
+            max-width: 1280px;
+            margin: 3rem auto;
+            padding: 0 2rem;
+        }
+
+        .jobs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .job-card {
+            background: var(--white);
+            border-radius: 16px;
+            padding: 1.5rem;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+            border: 1px solid var(--gray-200);
+            transition: all 0.3s;
+        }
+
+        .job-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+        }
+
+        .job-card.featured {
+            border-color: var(--primary);
+            position: relative;
+        }
+
+        .job-card.featured::before {
+            content: 'FEATURED';
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: var(--primary);
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 4px;
+            font-size: 0.7rem;
+            font-weight: 700;
+        }
+
+        .job-card.closed {
+            opacity: 0.7;
+        }
+
+        .job-header {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .job-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            flex-shrink: 0;
+        }
+
+        .job-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 0.3rem;
+        }
+
+        .job-company {
+            font-size: 0.85rem;
+            color: var(--gray-500);
+        }
+
+        .job-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .job-tag {
+            padding: 0.3rem 0.8rem;
+            background: var(--gray-100);
+            border-radius: 6px;
+            font-size: 0.75rem;
+            color: var(--gray-600);
+        }
+
+        .job-description {
+            font-size: 0.9rem;
+            color: var(--gray-600);
+            margin-bottom: 1rem;
+            line-height: 1.6;
+        }
+
+        .job-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 1rem;
+            border-top: 1px solid var(--gray-200);
+        }
+
+        .job-salary {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--success);
+        }
+
+        .job-salary span {
+            font-size: 0.85rem;
+            color: var(--gray-500);
+            font-weight: 400;
+        }
+
+        .job-btn {
+            padding: 0.7rem 1.5rem;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: none;
+            font-family: inherit;
+        }
+
+        .job-btn.apply {
+            background: var(--primary);
+            color: white;
+        }
+
+        .job-btn.apply:hover {
+            background: var(--primary-dark);
+        }
+
+        .job-btn.closed {
+            background: var(--gray-200);
+            color: var(--gray-500);
+            cursor: not-allowed;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: var(--gray-400);
+            padding: 4rem 2rem 2rem;
+            margin-top: 4rem;
+        }
+
+        .footer-container {
+            max-width: 1280px;
+            margin: 0 auto;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-col h4 {
+            color: white;
+            font-size: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .footer-col a {
+            display: block;
+            color: var(--gray-400);
+            text-decoration: none;
+            padding: 0.4rem 0;
+            font-size: 0.9rem;
+            transition: color 0.3s;
+            cursor: pointer;
+        }
+
+        .footer-col a:hover {
+            color: var(--primary-light);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding-top: 2rem;
+            text-align: center;
+        }
+
+        .footer-bottom p {
+            font-size: 0.85rem;
+        }
+
+        /* Modals */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(4px);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            padding: 1rem;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+        }
+
+        .modal {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            max-width: 500px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            animation: modalSlide 0.3s ease;
+            position: relative;
+        }
+
+        @keyframes modalSlide {
+            from { transform: translateY(20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .modal-header {
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .modal-header h2 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .modal-header p {
+            color: var(--gray-500);
+            font-size: 0.9rem;
+        }
+
+        .form-group {
+            margin-bottom: 1rem;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            border: 2px solid var(--gray-200);
+            border-radius: 10px;
+            font-size: 1rem;
+            font-family: inherit;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        .form-footer {
+            text-align: center;
+            margin-top: 1rem;
+            font-size: 0.85rem;
+            color: var(--gray-500);
+        }
+
+        .form-footer a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 500;
+            cursor: pointer;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--gray-400);
+        }
+
+        .modal-close:hover {
+            color: var(--dark);
+        }
+
+        /* Payment Modal */
+        .payment-info {
+            background: var(--gray-100);
+            border-radius: 12px;
+            padding: 1.5rem;
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .payment-amount {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--dark);
+        }
+
+        .payment-label {
+            font-size: 0.85rem;
+            color: var(--gray-500);
+        }
+
+        .upi-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.8rem;
+            width: 100%;
+            padding: 1rem;
+            background: linear-gradient(135deg, #5f259f, #8b5cf6);
+            color: white;
+            text-decoration: none;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 1rem;
+            margin-bottom: 1.5rem;
+            transition: all 0.3s;
+        }
+
+        .upi-btn:hover {
+            transform: scale(1.02);
+            box-shadow: 0 8px 20px rgba(95, 37, 159, 0.3);
+        }
+
+        .qr-container {
+            text-align: center;
+        }
+
+        .qr-container .label {
+            font-size: 0.85rem;
+            color: var(--gray-500);
+            margin-bottom: 1rem;
+        }
+
+        #qrcode {
+            display: inline-block;
+            padding: 1rem;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .verification-screen, .success-screen {
+            display: none;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .verification-screen.active, .success-screen.active {
+            display: block;
+        }
+
+        .spinner-large {
+            width: 60px;
+            height: 60px;
+            border: 4px solid var(--gray-200);
+            border-top-color: var(--primary);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 1.5rem;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .success-icon {
+            width: 80px;
+            height: 80px;
+            background: var(--success);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            font-size: 2.5rem;
+            color: white;
+        }
+
+        /* Info Modal Content */
+        .info-content {
+            line-height: 1.8;
+        }
+
+        .info-content h3 {
+            color: var(--primary);
+            margin: 1.5rem 0 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .info-content h3:first-child {
+            margin-top: 0;
+        }
+
+        .info-content p {
+            color: var(--gray-600);
+            font-size: 0.95rem;
+        }
+
+        .info-content ul {
+            margin: 0.5rem 0 1rem 1.5rem;
+            color: var(--gray-600);
+        }
+
+        .info-content li {
+            margin-bottom: 0.3rem;
+        }
+
+        .info-badge {
+            display: inline-block;
+            background: var(--primary);
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        /* Form Loading Spinner */
+        .spinner-small {
+            width: 20px;
+            height: 20px;
+            border: 2px solid rgba(255,255,255,0.3);
+            border-top-color: white;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            display: inline-block;
+            vertical-align: middle;
+            margin-right: 8px;
+        }
+
+        /* Mobile Menu */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--dark);
+        }
+
+        @media (max-width: 768px) {
+            .nav-links, .nav-buttons {
+                display: none;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .hero {
+                padding: 3rem 1rem;
+            }
+
+            .progress-section {
+                margin: -1rem 1rem 1rem;
+            }
+
+            .applicants-section, .jobs-section {
+                padding: 0 1rem;
+            }
+
+            .jobs-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .applicant-card {
+                padding: 0.8rem;
+            }
+        }
+
+        /* Hamburger Menu */
+        .mobile-nav {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: white;
+            z-index: 200;
+            padding: 2rem;
+            flex-direction: column;
+        }
+
+        .mobile-nav.active {
+            display: flex;
+        }
+
+        .mobile-nav-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+
+        .mobile-nav-links {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .mobile-nav-links a {
+            font-size: 1.2rem;
+            padding: 1rem;
+            text-decoration: none;
+            color: var(--dark);
+            border-bottom: 1px solid var(--gray-200);
+            cursor: pointer;
+        }
+
+        .mobile-nav-buttons {
+            margin-top: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <a href="#" class="logo">
+                <div class="logo-icon">C</div>
+                <div class="logo-text">Carbon<span>Grid</span></div>
+            </a>
+            <div class="nav-links">
+                <a onclick="scrollToTop()">Home</a>
+                <a href="#jobs">Jobs</a>
+                <a onclick="openModal('howItWorks')">How it Works</a>
+                <a onclick="openModal('about')">About</a>
+            </div>
+            <div class="nav-buttons">
+                <button class="btn btn-outline" onclick="openModal('login')">Login</button>
+                <button class="btn btn-primary" onclick="openModal('signup')">Sign Up</button>
+            </div>
+            <button class="mobile-menu-btn" onclick="toggleMobileNav()">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Mobile Navigation -->
+    <div class="mobile-nav" id="mobileNav">
+        <div class="mobile-nav-header">
+            <a href="#" class="logo">
+                <div class="logo-icon">C</div>
+                <div class="logo-text">Carbon<span>Grid</span></div>
+            </a>
+            <button class="mobile-menu-btn" onclick="toggleMobileNav()">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="mobile-nav-links">
+            <a onclick="scrollToTop(); toggleMobileNav();">Home</a>
+            <a href="#jobs" onclick="toggleMobileNav()">Jobs</a>
+            <a onclick="openModal('howItWorks'); toggleMobileNav();">How it Works</a>
+            <a onclick="openModal('about'); toggleMobileNav();">About</a>
+        </div>
+        <div class="mobile-nav-buttons">
+            <button class="btn btn-outline" onclick="openModal('login'); toggleMobileNav();">Login</button>
+            <button class="btn btn-primary" onclick="openModal('signup'); toggleMobileNav();">Sign Up</button>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-container">
+            <div class="hero-badge">
+                <div class="dot"></div>
+                <span>Platform is Live • Year 2026 • Hiring Now</span>
+            </div>
+            <h1>Train AI Models. <span>Get Paid.</span></h1>
+            <p>Join thousands of humans who are earning money by helping train GPT-6 and next-generation AI models. No technical skills required.</p>
+            <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                <button class="btn btn-primary" onclick="openModal('signup')" style="padding: 1rem 2rem; font-size: 1rem;">
+                    <i class="fas fa-rocket"></i> Start Earning Today
+                </button>
+                <button class="btn btn-outline" onclick="openModal('howItWorks')" style="padding: 1rem 2rem; font-size: 1rem; border-color: rgba(255,255,255,0.3); color: white;">
+                    <i class="fas fa-info-circle"></i> How it Works
+                </button>
+            </div>
+            <div class="hero-stats">
+                <div class="stat-card">
+                    <div class="label">Total Jobs Applied</div>
+                    <div class="value highlight" id="appliedCount">6,45,397</div>
+                    <div class="subtext">and counting...</div>
+                </div>
+                <div class="stat-card">
+                    <div class="label">Remaining Positions</div>
+                    <div class="value" id="remainingCount">3,54,603</div>
+                    <div class="subtext">out of 10,00,000</div>
+                </div>
+                <div class="stat-card">
+                    <div class="label">Active Workers</div>
+                    <div class="value">24,891</div>
+                    <div class="subtext">worldwide</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Progress Bar Section -->
+    <div class="progress-section">
+        <div class="progress-header">
+            <div class="progress-title">🎯 Job Application Progress</div>
+            <div class="progress-numbers">
+                <span class="current" id="progressCurrent">6,45,397</span>
+                <span class="total">/ 10,00,000 positions</span>
+            </div>
+        </div>
+        <div class="progress-bar">
+            <div class="progress-fill" id="progressFill" style="width: 64.54%;"></div>
+        </div>
+        <div class="progress-info">
+            <span>🔥 64.54% filled</span>
+            <span>⏰ Limited spots remaining</span>
+        </div>
+    </div>
+
+    <!-- Recent Applicants Section -->
+    <section class="applicants-section">
+        <div class="section-header">
+            <h2 class="section-title">Recent Applicants</h2>
+            <div class="live-badge">
+                <div class="dot"></div>
+                Live Updates
+            </div>
+        </div>
+        <div class="applicants-grid" id="applicantsGrid">
+            <!-- Applicants will be populated by JS -->
+        </div>
+    </section>
+
+    <!-- Jobs Section -->
+    <section class="jobs-section" id="jobs">
+        <div class="section-header">
+            <h2 class="section-title">Available Positions</h2>
+        </div>
+        <div class="jobs-grid" id="jobsGrid">
+            <!-- Jobs will be populated by JS -->
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <a href="#" class="logo" style="margin-bottom: 1rem;">
+                        <div class="logo-icon">C</div>
+                        <div class="logo-text" style="color: white;">Carbon<span>Grid</span></div>
+                    </a>
+                    <p style="font-size: 0.9rem; margin-top: 1rem;">Empowering humans to shape the future of AI while earning a sustainable income. Year 2026.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Platform</h4>
+                    <a onclick="openModal('howItWorks')">How it Works</a>
+                    <a href="#jobs">Browse Jobs</a>
+                    <a onclick="openModal('about')">About Platform</a>
+                    <a onclick="openModal('faq')">FAQ</a>
+                </div>
+                <div class="footer-col">
+                    <h4>Legal</h4>
+                    <a onclick="openModal('privacy')">Privacy Policy</a>
+                    <a onclick="openModal('terms')">Terms of Service</a>
+                    <a onclick="openModal('refund')">Refund Policy</a>
+                </div>
+                <div class="footer-col">
+                    <h4>Contact</h4>
+                    <p style="font-size: 0.9rem;">support@carbongrid.ai</p>
+                    <p style="font-size: 0.9rem; margin-top: 0.5rem;">Available 24/7</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2026 CarbonGrid. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Login Modal -->
+    <div class="modal-overlay" id="loginModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h2>Welcome Back</h2>
+                <p>Login to your CarbonGrid account</p>
+            </div>
+            <form onsubmit="handleLogin(event)">
+                <div class="form-group">
+                    <label for="loginEmail">Email Address</label>
+                    <input type="email" id="loginEmail" placeholder="Enter your email" required>
+                </div>
+                <div class="form-group">
+                    <label for="loginPassword">Password</label>
+                    <input type="password" id="loginPassword" placeholder="Enter your password" required>
+                </div>
+                <button type="submit" class="btn btn-primary" style="width: 100%; padding: 1rem; font-size: 1rem;" id="loginBtn">
+                    <i class="fas fa-sign-in-alt"></i> Login
+                </button>
+            </form>
+            <div class="form-footer">
+                <p>Don't have an account? <a onclick="switchModal('signup')">Sign up</a></p>
+            </div>
+            <button class="modal-close" onclick="closeModal('login')">×</button>
+        </div>
+    </div>
+
+    <!-- Signup Modal -->
+    <div class="modal-overlay" id="signupModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h2>Create Account</h2>
+                <p>Join 24,000+ humans earning with AI</p>
+            </div>
+            <form onsubmit="handleSignup(event)">
+                <div class="form-group">
+                    <label for="signupName">Full Name</label>
+                    <input type="text" id="signupName" placeholder="Enter your full name" required>
+                </div>
+                <div class="form-group">
+                    <label for="signupEmail">Email Address</label>
+                    <input type="email" id="signupEmail" placeholder="Enter your email" required>
+                </div>
+                <div class="form-group">
+                    <label for="signupPhone">Phone Number</label>
+                    <input type="tel" id="signupPhone" placeholder="Enter your phone number" required>
+                </div>
+                <div class="form-group">
+                    <label for="signupPassword">Password</label>
+                    <input type="password" id="signupPassword" placeholder="Create a password" required>
+                </div>
+                <button type="submit" class="btn btn-primary" style="width: 100%; padding: 1rem; font-size: 1rem;" id="signupBtn">
+                    <i class="fas fa-user-plus"></i> Create Account
+                </button>
+            </form>
+            <p style="font-size: 0.8rem; color: var(--gray-500); text-align: center; margin-top: 1rem;">
+                <i class="fas fa-lock"></i> By signing up, you agree to our Terms of Service and Privacy Policy.
+            </p>
+            <div class="form-footer">
+                <p>Already have an account? <a onclick="switchModal('login')">Login</a></p>
+            </div>
+            <button class="modal-close" onclick="closeModal('signup')">×</button>
+        </div>
+    </div>
+
+    <!-- Payment Modal -->
+    <div class="modal-overlay" id="paymentModal">
+        <div class="modal">
+            <div id="paymentContent">
+                <div class="modal-header">
+                    <h2>🎯 Complete Your Application</h2>
+                    <p>One-time verification fee (Refundable)</p>
+                </div>
+                <div class="payment-info">
+                    <div class="payment-label">Application Fee</div>
+                    <div class="payment-amount">₹100</div>
+                    <div class="payment-label">100% Refundable if not selected</div>
+                </div>
+                <a href="upi://pay?pa=thakurraj8156@okhdfcbank&pn=CarbonGrid&am=100&cu=INR" class="upi-btn" onclick="handlePayment()">
+                    <i class="fas fa-mobile-alt"></i> Pay with UPI App
+                </a>
+                <div class="qr-container">
+                    <div class="label">Or scan QR code with any UPI app</div>
+                    <div id="qrcode"></div>
+                </div>
+                <button class="btn btn-outline" style="width: 100%; margin-top: 1rem;" onclick="closeModal('payment')">Cancel</button>
+            </div>
+            <div class="verification-screen" id="verificationScreen">
+                <div class="spinner-large"></div>
+                <h2>Verifying Payment...</h2>
+                <p style="color: var(--gray-500);">Please wait while we confirm your transaction</p>
+            </div>
+            <div class="success-screen" id="successScreen">
+                <div class="success-icon">✓</div>
+                <h2 style="color: var(--success);">Application Submitted!</h2>
+                <p style="color: var(--gray-500); margin-bottom: 1.5rem;">Check your email for further instructions</p>
+                <button class="btn btn-success" onclick="closeModal('payment')">Done</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- How It Works Modal -->
+    <div class="modal-overlay" id="howItWorksModal">
+        <div class="modal">
+            <div class="modal-header">
+                <span class="info-badge">Platform Guide</span>
+                <h2>How CarbonGrid Works</h2>
+            </div>
+            <div class="info-content">
+                <h3>🚀 Step 1: Sign Up</h3>
+                <p>Create your free account with basic details. It takes less than 2 minutes.</p>
+                
+                <h3>💳 Step 2: Verify Identity</h3>
+                <p>Pay a one-time refundable fee of ₹100 to verify your identity. This prevents spam applications.</p>
+                
+                <h3>📋 Step 3: Get Assigned Tasks</h3>
+                <p>Once verified, you'll receive AI training tasks based on your selected job role:</p>
+                <ul>
+                    <li>Video annotation for GPT-6 Vision</li>
+                    <li>Text analysis for Language Models</li>
+                    <li>Image tagging and classification</li>
+                    <li>Audio transcription tasks</li>
+                </ul>
+                
+                <h3>💰 Step 4: Earn Money</h3>
+                <p>Complete tasks and earn money directly to your bank account. Payments are processed weekly.</p>
+                
+                <h3>🎯 Why 2026 is Different</h3>
+                <p>With AI reaching singularity in 2026, human intuition is crucial for safety alignment. Your biological intelligence helps train AI to be safer and more reliable.</p>
+            </div>
+            <button class="btn btn-primary" style="width: 100%; margin-top: 1.5rem;" onclick="closeModal('howItWorks')">Got it!</button>
+            <button class="modal-close" onclick="closeModal('howItWorks')">×</button>
+        </div>
+    </div>
+
+    <!-- About Modal -->
+    <div class="modal-overlay" id="aboutModal">
+        <div class="modal">
+            <div class="modal-header">
+                <span class="info-badge">About Us</span>
+                <h2>About CarbonGrid</h2>
+            </div>
+            <div class="info-content">
+                <h3>🌐 Our Mission</h3>
+                <p>CarbonGrid is a next-generation AI training platform founded in 2026. We connect human intelligence with artificial intelligence to create safer, more reliable AI systems.</p>
+                
+                <h3>🤖 Why Human-in-the-Loop?</h3>
+                <p>Despite AI advances, human intuition remains irreplaceable for nuanced tasks like emotional understanding, cultural context, and ethical decision-making.</p>
+                
+                <h3>📊 Our Impact</h3>
+                <ul>
+                    <li>24,000+ active human contributors worldwide</li>
+                    <li>6,45,000+ successful job applications</li>
+                    <li>Training data for GPT-6 and beyond</li>
+                    <li>Partnerships with leading AI labs</li>
+                </ul>
+                
+                <h3>💼 Work Culture</h3>
+                <p>We believe in flexible, remote work. Contribute from anywhere, anytime. No fixed hours, no office politics—just meaningful work that shapes the future.</p>
+                
+                <h3>🔒 Security First</h3>
+                <p>Your data is encrypted and secure. We comply with international privacy standards and never share personal information with third parties.</p>
+            </div>
+            <button class="btn btn-primary" style="width: 100%; margin-top: 1.5rem;" onclick="closeModal('about')">Close</button>
+            <button class="modal-close" onclick="closeModal('about')">×</button>
+        </div>
+    </div>
+
+    <!-- FAQ Modal -->
+    <div class="modal-overlay" id="faqModal">
+        <div class="modal">
+            <div class="modal-header">
+                <span class="info-badge">FAQ</span>
+                <h2>Frequently Asked Questions</h2>
+            </div>
+            <div class="info-content">
+                <h3>❓ Is this job real?</h3>
+                <p>Yes! CarbonGrid is a legitimate platform where you earn by completing AI training tasks.</p>
+                
+                <h3>❓ Why is there a ₹100 fee?</h3>
+                <p>The fee prevents spam applications and ensures serious candidates. It's 100% refundable if not selected.</p>
+                
+                <h3>❓ How much can I earn?</h3>
+                <p>Earnings range from ₹25,000 to ₹45,000 per month depending on the role and hours worked.</p>
+                
+                <h3>❓ Do I need technical skills?</h3>
+                <p>No! All tasks are simple and training is provided. Anyone can do this work.</p>
+                
+                <h3>❓ When will I get paid?</h3>
+                <p>Payments are processed every Friday directly to your bank account.</p>
+                
+                <h3>❓ Can I work part-time?</h3>
+                <p>Absolutely! Choose your own hours. Work as much or as little as you want.</p>
+            </div>
+            <button class="btn btn-primary" style="width: 100%; margin-top: 1.5rem;" onclick="closeModal('faq')">Close</button>
+            <button class="modal-close" onclick="closeModal('faq')">×</button>
+        </div>
+    </div>
+
+    <!-- Privacy Modal -->
+    <div class="modal-overlay" id="privacyModal">
+        <div class="modal">
+            <div class="modal-header">
+                <span class="info-badge">Legal</span>
+                <h2>Privacy Policy</h2>
+            </div>
+            <div class="info-content">
+                <h3>📋 Data Collection</h3>
+                <p>We collect only essential information: name, email, phone number, and payment details for processing your earnings.</p>
+                
+                <h3>🔒 Data Security</h3>
+                <p>All data is encrypted using industry-standard protocols. We use secure servers and never store payment credentials.</p>
+                
+                <h3>🚫 No Third-Party Sharing</h3>
+                <p>Your personal information is never sold or shared with third parties for marketing purposes.</p>
+                
+                <h3>✅ Your Rights</h3>
+                <p>You can request data deletion at any time by contacting support@carbongrid.ai</p>
+            </div>
+            <button class="btn btn-primary" style="width: 100%; margin-top: 1.5rem;" onclick="closeModal('privacy')">Close</button>
+            <button class="modal-close" onclick="closeModal('privacy')">×</button>
+        </div>
+    </div>
+
+    <!-- Terms Modal -->
+    <div class="modal-overlay" id="termsModal">
+        <div class="modal">
+            <div class="modal-header">
+                <span class="info-badge">Legal</span>
+                <h2>Terms of Service</h2>
+            </div>
+            <div class="info-content">
+                <h3>📜 Agreement</h3>
+                <p>By using CarbonGrid, you agree to these terms and our privacy policy.</p>
+                
+                <h3>👤 Eligibility</h3>
+                <p>You must be 18+ years old and have a valid ID to participate in our programs.</p>
+                
+                <h3>💼 Work Terms</h3>
+                <p>Tasks must be completed honestly and accurately. Fraudulent submissions will result in account termination.</p>
+                
+                <h3>💰 Payments</h3>
+                <p>Payments are processed weekly. Minimum withdrawal is ₹500. Bank details must be accurate.</p>
+                
+                <h3>⚠️ Termination</h3>
+                <p>We reserve the right to terminate accounts that violate our policies without prior notice.</p>
+            </div>
+            <button class="btn btn-primary" style="width: 100%; margin-top: 1.5rem;" onclick="closeModal('terms')">Close</button>
+            <button class="modal-close" onclick="closeModal('terms')">×</button>
+        </div>
+    </div>
+
+    <!-- Refund Modal -->
+    <div class="modal-overlay" id="refundModal">
+        <div class="modal">
+            <div class="modal-header">
+                <span class="info-badge">Legal</span>
+                <h2>Refund Policy</h2>
+            </div>
+            <div class="info-content">
+                <h3>💰 100% Refundable Fee</h3>
+                <p>The ₹100 verification fee is fully refundable under the following conditions:</p>
+                
+                <h3>✅ Eligible for Refund</h3>
+                <ul>
+                    <li>If your application is not selected within 7 days</li>
+                    <li>If you cancel before task assignment</li>
+                    <li>Technical issues preventing participation</li>
+                </ul>
+                
+                <h3>❌ Not Eligible</h3>
+                <ul>
+                    <li>If you start working and then quit</li>
+                    <li>Account terminated due to policy violation</li>
+                    <li>Fraudulent applications</li>
+                </ul>
+                
+                <h3>📅 Processing Time</h3>
+                <p>Refunds are processed within 5-7 business days to the original payment method.</p>
+            </div>
+            <button class="btn btn-primary" style="width: 100%; margin-top: 1.5rem;" onclick="closeModal('refund')">Close</button>
+            <button class="modal-close" onclick="closeModal('refund')">×</button>
+        </div>
+    </div>
+
+    <script>
+        // Applicants Data (25 people)
+        const applicants = [
+            { name: "Rahul Sharma", role: "Video Annotator", time: "2 min ago", status: "verified", color: "#6366f1" },
+            { name: "Priya Patel", role: "Text Analyst", time: "5 min ago", status: "verified", color: "#ec4899" },
+            { name: "Amit Kumar", role: "Data Labeler", time: "8 min ago", status: "verified", color: "#10b981" },
+            { name: "Sneha Reddy", role: "Image Tagger", time: "12 min ago", status: "verified", color: "#f59e0b" },
+            { name: "Vikram Singh", role: "Audio Analyst", time: "15 min ago", status: "pending", color: "#8b5cf6" },
+            { name: "Anita Desai", role: "Video Annotator", time: "18 min ago", status: "verified", color: "#06b6d4" },
+            { name: "Rajesh Gupta", role: "Text Analyst", time: "22 min ago", status: "verified", color: "#ef4444" },
+            { name: "Meera Nair", role: "Data Labeler", time: "25 min ago", status: "verified", color: "#84cc16" },
+            { name: "Suresh Iyer", role: "Image Tagger", time: "30 min ago", status: "verified", color: "#f97316" },
+            { name: "Kavitha Menon", role: "Audio Analyst", time: "35 min ago", status: "pending", color: "#14b8a6" },
+            { name: "Deepak Joshi", role: "Video Annotator", time: "40 min ago", status: "verified", color: "#a855f7" },
+            { name: "Lakshmi Rao", role: "Text Analyst", time: "45 min ago", status: "verified", color: "#ec4899" },
+            { name: "Arun Pillai", role: "Data Labeler", time: "50 min ago", status: "verified", color: "#6366f1" },
+            { name: "Divya Krishnan", role: "Image Tagger", time: "55 min ago", status: "verified", color: "#10b981" },
+            { name: "Sanjay Verma", role: "Audio Analyst", time: "1 hour ago", status: "verified", color: "#f59e0b" },
+            { name: "Pooja Bhatt", role: "Video Annotator", time: "1 hour ago", status: "verified", color: "#8b5cf6" },
+            { name: "Kiran Hegde", role: "Text Analyst", time: "1 hour ago", status: "pending", color: "#06b6d4" },
+            { name: "Neha Saxena", role: "Data Labeler", time: "2 hours ago", status: "verified", color: "#ef4444" },
+            { name: "Vivek Chauhan", role: "Image Tagger", time: "2 hours ago", status: "verified", color: "#84cc16" },
+            { name: "Shweta Mishra", role: "Audio Analyst", time: "2 hours ago", status: "verified", color: "#f97316" },
+            { name: "Manoj Tiwari", role: "Video Annotator", time: "3 hours ago", status: "verified", color: "#14b8a6" },
+            { name: "Ritu Agarwal", role: "Text Analyst", time: "3 hours ago", status: "verified", color: "#a855f7" },
+            { name: "Gaurav Pandey", role: "Data Labeler", time: "4 hours ago", status: "verified", color: "#ec4899" },
+            { name: "Sunita Yadav", role: "Image Tagger", time: "4 hours ago", status: "verified", color: "#6366f1" },
+            { name: "Ashish Sinha", role: "Audio Analyst", time: "5 hours ago", status: "verified", color: "#10b981" }
+        ];
+
+        // Jobs Data
+        const jobs = [
+            {
+                title: "Video Content Annotator",
+                company: "GPT-6 Vision Training",
+                icon: "🎬",
+                iconBg: "#fee2e2",
+                tags: ["Remote", "Part-time", "Flexible"],
+                description: "Watch and label video content to help train next-generation AI vision models. Perfect for detail-oriented individuals.",
+                salary: "₹45,000",
+                period: "/month",
+                featured: true,
+                open: true
+            },
+            {
+                title: "Text Data Analyst",
+                company: "LLM Training Division",
+                icon: "📝",
+                iconBg: "#dbeafe",
+                tags: ["Remote", "Full-time", "Training Provided"],
+                description: "Analyze and structure text data to improve AI language understanding. No coding required.",
+                salary: "₹38,000",
+                period: "/month",
+                featured: true,
+                open: true
+            },
+            {
+                title: "Audio Transcription Specialist",
+                company: "Speech AI Team",
+                icon: "🎧",
+                iconBg: "#d1fae5",
+                tags: ["Remote", "Part-time"],
+                description: "Transcribe and verify audio recordings for speech recognition AI training.",
+                salary: "₹32,000",
+                period: "/month",
+                featured: false,
+                open: false
+            },
+            {
+                title: "Image Classification Expert",
+                company: "Computer Vision Lab",
+                icon: "🖼️",
+                iconBg: "#fef3c7",
+                tags: ["Remote", "Flexible Hours"],
+                description: "Categorize and tag images to train AI image recognition systems.",
+                salary: "₹35,000",
+                period: "/month",
+                featured: false,
+                open: false
+            },
+            {
+                title: "Sentiment Analyst",
+                company: "Emotion AI Division",
+                icon: "😊",
+                iconBg: "#fce7f3",
+                tags: ["Remote", "Part-time"],
+                description: "Analyze text and identify emotional context for sentiment AI training.",
+                salary: "₹28,000",
+                period: "/month",
+                featured: false,
+                open: false
+            },
+            {
+                title: "Data Quality Reviewer",
+                company: "Quality Assurance",
+                icon: "✅",
+                iconBg: "#dcfce7",
+                tags: ["Remote", "Full-time"],
+                description: "Review and validate data annotations for accuracy and consistency.",
+                salary: "₹40,000",
+                period: "/month",
+                featured: false,
+                open: false
+            }
+        ];
+
+        // Render Applicants
+        function renderApplicants() {
+            const grid = document.getElementById('applicantsGrid');
+            grid.innerHTML = applicants.map((a, i) => `
+                <div class="applicant-card ${i < 3 ? 'new' : ''}">
+                    <div class="applicant-avatar" style="background: ${a.color}">
+                        ${a.name.split(' ').map(n => n[0]).join('')}
+                    </div>
+                    <div class="applicant-info">
+                        <div class="applicant-name">${a.name}</div>
+                        <div class="applicant-role">${a.role}</div>
+                    </div>
+                    <div>
+                        <div class="applicant-time">${a.time}</div>
+                        <span class="applicant-status status-${a.status}">${a.status}</span>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Render Jobs
+        function renderJobs() {
+            const grid = document.getElementById('jobsGrid');
+            grid.innerHTML = jobs.map(job => `
+                <div class="job-card ${job.featured ? 'featured' : ''} ${!job.open ? 'closed' : ''}">
+                    <div class="job-header">
+                        <div class="job-icon" style="background: ${job.iconBg}">${job.icon}</div>
+                        <div>
+                            <div class="job-title">${job.title}</div>
+                            <div class="job-company">${job.company}</div>
+                        </div>
+                    </div>
+                    <div class="job-tags">
+                        ${job.tags.map(tag => `<span class="job-tag">${tag}</span>`).join('')}
+                    </div>
+                    <p class="job-description">${job.description}</p>
+                    <div class="job-footer">
+                        <div class="job-salary">${job.salary} <span>${job.period}</span></div>
+                        ${job.open 
+                            ? `<button class="job-btn apply" onclick="openModal('payment')">Apply Now</button>`
+                            : `<button class="job-btn closed" disabled>Positions Filled</button>`
+                        }
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Counter Logic - Very slow increment (10 per hour = 1 per 360 seconds)
+        let appliedCount = 645397;
+        const totalJobs = 1000000;
+
+        function updateCounters() {
+            document.getElementById('appliedCount').textContent = appliedCount.toLocaleString('en-IN');
+            document.getElementById('remainingCount').textContent = (totalJobs - appliedCount).toLocaleString('en-IN');
+            document.getElementById('progressCurrent').textContent = appliedCount.toLocaleString('en-IN');
+            
+            const percentage = (appliedCount / totalJobs) * 100;
+            document.getElementById('progressFill').style.width = percentage + '%';
+        }
+
+        // Increment by 1 every 360 seconds (6 minutes) = 10 per hour
+        setInterval(() => {
+            appliedCount++;
+            updateCounters();
+        }, 360000);
+
+        // Scroll to top
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Modal Functions
+        function openModal(type) {
+            document.getElementById(type + 'Modal').classList.add('active');
+            if (type === 'payment' && !document.querySelector('#qrcode canvas')) {
+                new QRCode(document.getElementById('qrcode'), {
+                    text: "upi://pay?pa=thakurraj8156@okhdfcbank&pn=CarbonGrid&am=100&cu=INR",
+                    width: 150,
+                    height: 150,
+                    colorDark: "#0f172a",
+                    colorLight: "#ffffff"
+                });
+            }
+        }
+
+        function closeModal(type) {
+            document.getElementById(type + 'Modal').classList.remove('active');
+            // Reset payment modal state
+            if (type === 'payment') {
+                document.getElementById('paymentContent').style.display = 'block';
+                document.getElementById('verificationScreen').classList.remove('active');
+                document.getElementById('successScreen').classList.remove('active');
+            }
+        }
+
+        function switchModal(type) {
+            document.querySelectorAll('.modal-overlay').forEach(m => m.classList.remove('active'));
+            openModal(type);
+        }
+
+        function handlePayment() {
+            setTimeout(() => {
+                document.getElementById('paymentContent').style.display = 'none';
+                document.getElementById('verificationScreen').classList.add('active');
+                
+                setTimeout(() => {
+                    document.getElementById('verificationScreen').classList.remove('active');
+                    document.getElementById('successScreen').classList.add('active');
+                }, 5000);
+            }, 500);
+        }
+
+        function handleLogin(event) {
+            event.preventDefault();
+            const loginBtn = document.getElementById('loginBtn');
+            const originalText = loginBtn.innerHTML;
+            
+            // Show loading state
+            loginBtn.innerHTML = '<div class="spinner-small"></div> Logging in...';
+            loginBtn.disabled = true;
+            
+            setTimeout(() => {
+                closeModal('login');
+                loginBtn.innerHTML = originalText;
+                loginBtn.disabled = false;
+                // Clear form
+                document.getElementById('loginEmail').value = '';
+                document.getElementById('loginPassword').value = '';
+                alert('✅ Welcome Back!\n\nYou are now logged in. Browse jobs and apply!');
+            }, 1500);
+        }
+
+        function handleSignup(event) {
+            event.preventDefault();
+            const signupBtn = document.getElementById('signupBtn');
+            const originalText = signupBtn.innerHTML;
+            
+            // Show loading state
+            signupBtn.innerHTML = '<div class="spinner-small"></div> Creating Account...';
+            signupBtn.disabled = true;
+            
+            setTimeout(() => {
+                closeModal('signup');
+                signupBtn.innerHTML = originalText;
+                signupBtn.disabled = false;
+                // Clear form
+                document.getElementById('signupName').value = '';
+                document.getElementById('signupEmail').value = '';
+                document.getElementById('signupPhone').value = '';
+                document.getElementById('signupPassword').value = '';
+                alert('🎉 Account Created Successfully!\n\nWelcome to CarbonGrid! Now browse jobs and click "Apply Now" to apply.');
+            }, 1500);
+        }
+
+        function toggleMobileNav() {
+            document.getElementById('mobileNav').classList.toggle('active');
+        }
+
+        // Close modals on overlay click
+        document.querySelectorAll('.modal-overlay').forEach(modal => {
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) {
+                    modal.classList.remove('active');
+                }
+            });
+        });
+
+        // Initialize
+        renderApplicants();
+        renderJobs();
+        updateCounters();
+    </script>
+</body>
+</html>
