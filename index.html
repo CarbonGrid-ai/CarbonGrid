@@ -108,6 +108,7 @@
         .nav-buttons {
             display: flex;
             gap: 1rem;
+            align-items: center;
         }
 
         .btn {
@@ -150,6 +151,31 @@
 
         .btn-success:hover {
             background: #059669;
+        }
+
+        /* User Info in Navbar */
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .user-avatar {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: var(--primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .user-name {
+            font-weight: 600;
+            color: var(--dark);
         }
 
         /* Hero Section */
@@ -745,6 +771,27 @@
             border-color: var(--primary);
         }
 
+        .form-group input.error {
+            border-color: var(--danger);
+        }
+
+        .form-group .error-message {
+            color: var(--danger);
+            font-size: 0.8rem;
+            margin-top: 0.3rem;
+            display: none;
+        }
+
+        .form-group .error-message.show {
+            display: block;
+        }
+
+        .form-group .hint {
+            color: var(--gray-500);
+            font-size: 0.75rem;
+            margin-top: 0.3rem;
+        }
+
         .form-footer {
             text-align: center;
             margin-top: 1rem;
@@ -1010,6 +1057,40 @@
             flex-direction: column;
             gap: 1rem;
         }
+
+        /* Password requirements */
+        .password-requirements {
+            background: var(--gray-100);
+            border-radius: 8px;
+            padding: 0.8rem;
+            margin-top: 0.5rem;
+        }
+
+        .password-requirements p {
+            font-size: 0.75rem;
+            color: var(--gray-500);
+            margin-bottom: 0.3rem;
+        }
+
+        .password-requirements p:last-child {
+            margin-bottom: 0;
+        }
+
+        .password-requirements p.valid {
+            color: var(--success);
+        }
+
+        .password-requirements p.valid::before {
+            content: '✓ ';
+        }
+
+        .password-requirements p.invalid {
+            color: var(--danger);
+        }
+
+        .password-requirements p.invalid::before {
+            content: '✗ ';
+        }
     </style>
 </head>
 <body>
@@ -1026,7 +1107,7 @@
                 <a onclick="openModal('howItWorks')">How it Works</a>
                 <a onclick="openModal('about')">About</a>
             </div>
-            <div class="nav-buttons">
+            <div class="nav-buttons" id="navButtons">
                 <button class="btn btn-outline" onclick="openModal('login')">Login</button>
                 <button class="btn btn-primary" onclick="openModal('signup')">Sign Up</button>
             </div>
@@ -1053,7 +1134,7 @@
             <a onclick="openModal('howItWorks'); toggleMobileNav();">How it Works</a>
             <a onclick="openModal('about'); toggleMobileNav();">About</a>
         </div>
-        <div class="mobile-nav-buttons">
+        <div class="mobile-nav-buttons" id="mobileNavButtons">
             <button class="btn btn-outline" onclick="openModal('login'); toggleMobileNav();">Login</button>
             <button class="btn btn-primary" onclick="openModal('signup'); toggleMobileNav();">Sign Up</button>
         </div>
@@ -1181,17 +1262,19 @@
                 <h2>Welcome Back</h2>
                 <p>Login to your CarbonGrid account</p>
             </div>
-            <form onsubmit="handleLogin(event)">
+            <form id="loginForm" onsubmit="handleLogin(event)">
                 <div class="form-group">
-                    <label for="loginEmail">Email Address</label>
-                    <input type="email" id="loginEmail" placeholder="Enter your email" required>
+                    <label>Email Address</label>
+                    <input type="email" id="loginEmail" placeholder="yourname@gmail.com" required>
+                    <span class="error-message" id="loginEmailError">Only @gmail.com emails are allowed</span>
                 </div>
                 <div class="form-group">
-                    <label for="loginPassword">Password</label>
+                    <label>Password</label>
                     <input type="password" id="loginPassword" placeholder="Enter your password" required>
+                    <span class="error-message" id="loginPasswordError">Invalid email or password</span>
                 </div>
-                <button type="submit" class="btn btn-primary" style="width: 100%; padding: 1rem; font-size: 1rem;" id="loginBtn">
-                    <i class="fas fa-sign-in-alt"></i> Login
+                <button type="submit" class="btn btn-primary" style="width: 100%; padding: 1rem;" id="loginBtn">
+                    Login
                 </button>
             </form>
             <div class="form-footer">
@@ -1208,29 +1291,36 @@
                 <h2>Create Account</h2>
                 <p>Join 24,000+ humans earning with AI</p>
             </div>
-            <form onsubmit="handleSignup(event)">
+            <form id="signupForm" onsubmit="handleSignup(event)">
                 <div class="form-group">
-                    <label for="signupName">Full Name</label>
+                    <label>Full Name</label>
                     <input type="text" id="signupName" placeholder="Enter your full name" required>
+                    <span class="error-message" id="signupNameError">Please enter your name</span>
                 </div>
                 <div class="form-group">
-                    <label for="signupEmail">Email Address</label>
-                    <input type="email" id="signupEmail" placeholder="Enter your email" required>
+                    <label>Email Address</label>
+                    <input type="email" id="signupEmail" placeholder="yourname@gmail.com" required>
+                    <span class="error-message" id="signupEmailError">Only @gmail.com emails are allowed</span>
+                    <span class="hint">Only Gmail accounts are accepted</span>
                 </div>
                 <div class="form-group">
-                    <label for="signupPhone">Phone Number</label>
-                    <input type="tel" id="signupPhone" placeholder="Enter your phone number" required>
+                    <label>Password</label>
+                    <input type="password" id="signupPassword" placeholder="Create a password" required oninput="checkPasswordStrength()">
+                    <div class="password-requirements" id="passwordRequirements">
+                        <p id="reqLength">Minimum 8 characters</p>
+                    </div>
                 </div>
                 <div class="form-group">
-                    <label for="signupPassword">Password</label>
-                    <input type="password" id="signupPassword" placeholder="Create a password" required>
+                    <label>Confirm Password</label>
+                    <input type="password" id="signupConfirmPassword" placeholder="Confirm your password" required oninput="checkPasswordMatch()">
+                    <span class="error-message" id="signupConfirmError">Passwords do not match</span>
                 </div>
-                <button type="submit" class="btn btn-primary" style="width: 100%; padding: 1rem; font-size: 1rem;" id="signupBtn">
-                    <i class="fas fa-user-plus"></i> Create Account
+                <button type="submit" class="btn btn-primary" style="width: 100%; padding: 1rem;" id="signupBtn">
+                    Create Account
                 </button>
             </form>
             <p style="font-size: 0.8rem; color: var(--gray-500); text-align: center; margin-top: 1rem;">
-                <i class="fas fa-lock"></i> By signing up, you agree to our Terms of Service and Privacy Policy.
+                <i class="fas fa-lock"></i> By signing up, you agree to our <a onclick="openModal('terms')" style="color: var(--primary); cursor: pointer;">Terms</a> and <a onclick="openModal('privacy')" style="color: var(--primary); cursor: pointer;">Privacy Policy</a>
             </p>
             <div class="form-footer">
                 <p>Already have an account? <a onclick="switchModal('login')">Login</a></p>
@@ -1460,6 +1550,15 @@
     </div>
 
     <script>
+        // User Database (localStorage)
+        let users = JSON.parse(localStorage.getItem('carbongrid_users')) || [];
+        let currentUser = JSON.parse(localStorage.getItem('carbongrid_currentUser')) || null;
+
+        // Check if user is already logged in
+        if (currentUser) {
+            updateAuthUI(currentUser);
+        }
+
         // Applicants Data (25 people)
         const applicants = [
             { name: "Rahul Sharma", role: "Video Annotator", time: "2 min ago", status: "verified", color: "#6366f1" },
@@ -1604,7 +1703,7 @@
                     <div class="job-footer">
                         <div class="job-salary">${job.salary} <span>${job.period}</span></div>
                         ${job.open 
-                            ? `<button class="job-btn apply" onclick="openModal('payment')">Apply Now</button>`
+                            ? `<button class="job-btn apply" onclick="applyForJob()">Apply Now</button>`
                             : `<button class="job-btn closed" disabled>Positions Filled</button>`
                         }
                     </div>
@@ -1612,7 +1711,17 @@
             `).join('');
         }
 
-        // Counter Logic - Very slow increment (10 per hour = 1 per 360 seconds)
+        // Apply for Job - Check if logged in
+        function applyForJob() {
+            if (!currentUser) {
+                alert('Please login first to apply for jobs!');
+                openModal('login');
+                return;
+            }
+            openModal('payment');
+        }
+
+        // Counter Logic
         let appliedCount = 645397;
         const totalJobs = 1000000;
 
@@ -1658,11 +1767,227 @@
                 document.getElementById('verificationScreen').classList.remove('active');
                 document.getElementById('successScreen').classList.remove('active');
             }
+            // Reset form errors
+            if (type === 'login' || type === 'signup') {
+                resetFormErrors();
+            }
         }
 
         function switchModal(type) {
             document.querySelectorAll('.modal-overlay').forEach(m => m.classList.remove('active'));
+            resetFormErrors();
             openModal(type);
+        }
+
+        function resetFormErrors() {
+            document.querySelectorAll('.error-message').forEach(e => e.classList.remove('show'));
+            document.querySelectorAll('input').forEach(i => i.classList.remove('error'));
+        }
+
+        // Validate Gmail
+        function isValidGmail(email) {
+            const gmailRegex = /^[a-zA-Z0-9._%+-]+@gmail\.com$/;
+            return gmailRegex.test(email);
+        }
+
+        // Check Password Strength
+        function checkPasswordStrength() {
+            const password = document.getElementById('signupPassword').value;
+            const reqLength = document.getElementById('reqLength');
+            
+            if (password.length >= 8) {
+                reqLength.classList.add('valid');
+                reqLength.classList.remove('invalid');
+            } else {
+                reqLength.classList.add('invalid');
+                reqLength.classList.remove('valid');
+            }
+        }
+
+        // Check Password Match
+        function checkPasswordMatch() {
+            const password = document.getElementById('signupPassword').value;
+            const confirmPassword = document.getElementById('signupConfirmPassword').value;
+            const errorMsg = document.getElementById('signupConfirmError');
+            const confirmInput = document.getElementById('signupConfirmPassword');
+            
+            if (confirmPassword.length > 0 && password !== confirmPassword) {
+                errorMsg.classList.add('show');
+                confirmInput.classList.add('error');
+            } else {
+                errorMsg.classList.remove('show');
+                confirmInput.classList.remove('error');
+            }
+        }
+
+        // Handle Signup
+        function handleSignup(event) {
+            event.preventDefault();
+            
+            const name = document.getElementById('signupName').value.trim();
+            const email = document.getElementById('signupEmail').value.trim().toLowerCase();
+            const password = document.getElementById('signupPassword').value;
+            const confirmPassword = document.getElementById('signupConfirmPassword').value;
+            
+            let isValid = true;
+            
+            // Validate name
+            if (name.length < 2) {
+                document.getElementById('signupNameError').classList.add('show');
+                document.getElementById('signupName').classList.add('error');
+                isValid = false;
+            }
+            
+            // Validate Gmail
+            if (!isValidGmail(email)) {
+                document.getElementById('signupEmailError').classList.add('show');
+                document.getElementById('signupEmail').classList.add('error');
+                isValid = false;
+            }
+            
+            // Validate password length
+            if (password.length < 8) {
+                document.getElementById('signupPassword').classList.add('error');
+                isValid = false;
+            }
+            
+            // Validate password match
+            if (password !== confirmPassword) {
+                document.getElementById('signupConfirmError').classList.add('show');
+                document.getElementById('signupConfirmPassword').classList.add('error');
+                isValid = false;
+            }
+            
+            // Check if email already exists
+            const existingUser = users.find(u => u.email === email);
+            if (existingUser) {
+                document.getElementById('signupEmailError').textContent = 'This email is already registered';
+                document.getElementById('signupEmailError').classList.add('show');
+                document.getElementById('signupEmail').classList.add('error');
+                isValid = false;
+            }
+            
+            if (!isValid) return;
+            
+            // Show loading
+            const btn = document.getElementById('signupBtn');
+            btn.innerHTML = '<span class="spinner-small"></span> Creating Account...';
+            btn.disabled = true;
+            
+            // Simulate account creation
+            setTimeout(() => {
+                // Save user
+                const newUser = {
+                    name: name,
+                    email: email,
+                    password: password,
+                    createdAt: new Date().toISOString()
+                };
+                
+                users.push(newUser);
+                localStorage.setItem('carbongrid_users', JSON.stringify(users));
+                
+                // Reset button
+                btn.innerHTML = 'Create Account';
+                btn.disabled = false;
+                
+                // Close modal and show success
+                closeModal('signup');
+                alert('Account Created Successfully!\n\nWelcome ' + name + '!\n\nPlease login to continue.');
+                
+                // Open login modal
+                setTimeout(() => openModal('login'), 500);
+                
+            }, 1500);
+        }
+
+        // Handle Login
+        function handleLogin(event) {
+            event.preventDefault();
+            
+            const email = document.getElementById('loginEmail').value.trim().toLowerCase();
+            const password = document.getElementById('loginPassword').value;
+            
+            let isValid = true;
+            
+            // Validate Gmail
+            if (!isValidGmail(email)) {
+                document.getElementById('loginEmailError').classList.add('show');
+                document.getElementById('loginEmail').classList.add('error');
+                isValid = false;
+            }
+            
+            if (!isValid) return;
+            
+            // Find user
+            const user = users.find(u => u.email === email && u.password === password);
+            
+            if (!user) {
+                document.getElementById('loginPasswordError').classList.add('show');
+                document.getElementById('loginPassword').classList.add('error');
+                return;
+            }
+            
+            // Show loading
+            const btn = document.getElementById('loginBtn');
+            btn.innerHTML = '<span class="spinner-small"></span> Logging in...';
+            btn.disabled = true;
+            
+            // Simulate login
+            setTimeout(() => {
+                // Save current user
+                currentUser = user;
+                localStorage.setItem('carbongrid_currentUser', JSON.stringify(currentUser));
+                
+                // Update UI
+                updateAuthUI(user);
+                
+                // Reset button
+                btn.innerHTML = 'Login';
+                btn.disabled = false;
+                
+                // Close modal and show success
+                closeModal('login');
+                alert('Login Successful!\n\nWelcome back, ' + user.name + '!');
+                
+            }, 1500);
+        }
+
+        // Update Auth UI
+        function updateAuthUI(user) {
+            const navButtons = document.getElementById('navButtons');
+            const mobileNavButtons = document.getElementById('mobileNavButtons');
+            
+            if (user) {
+                const initials = user.name.split(' ').map(n => n[0]).join('').toUpperCase();
+                const firstName = user.name.split(' ')[0];
+                
+                const userHTML = `
+                    <div class="user-info">
+                        <div class="user-avatar">${initials}</div>
+                        <span class="user-name">${firstName}</span>
+                    </div>
+                    <button class="btn btn-outline" onclick="logoutUser()">Logout</button>
+                `;
+                
+                navButtons.innerHTML = userHTML;
+                mobileNavButtons.innerHTML = userHTML;
+            } else {
+                const defaultHTML = `
+                    <button class="btn btn-outline" onclick="openModal('login')">Login</button>
+                    <button class="btn btn-primary" onclick="openModal('signup')">Sign Up</button>
+                `;
+                navButtons.innerHTML = defaultHTML;
+                mobileNavButtons.innerHTML = defaultHTML;
+            }
+        }
+
+        // Logout
+        function logoutUser() {
+            currentUser = null;
+            localStorage.removeItem('carbongrid_currentUser');
+            updateAuthUI(null);
+            alert('Logged out successfully!');
         }
 
         function handlePayment() {
@@ -1675,48 +2000,6 @@
                     document.getElementById('successScreen').classList.add('active');
                 }, 5000);
             }, 500);
-        }
-
-        function handleLogin(event) {
-            event.preventDefault();
-            const loginBtn = document.getElementById('loginBtn');
-            const originalText = loginBtn.innerHTML;
-            
-            // Show loading state
-            loginBtn.innerHTML = '<div class="spinner-small"></div> Logging in...';
-            loginBtn.disabled = true;
-            
-            setTimeout(() => {
-                closeModal('login');
-                loginBtn.innerHTML = originalText;
-                loginBtn.disabled = false;
-                // Clear form
-                document.getElementById('loginEmail').value = '';
-                document.getElementById('loginPassword').value = '';
-                alert('✅ Welcome Back!\n\nYou are now logged in. Browse jobs and apply!');
-            }, 1500);
-        }
-
-        function handleSignup(event) {
-            event.preventDefault();
-            const signupBtn = document.getElementById('signupBtn');
-            const originalText = signupBtn.innerHTML;
-            
-            // Show loading state
-            signupBtn.innerHTML = '<div class="spinner-small"></div> Creating Account...';
-            signupBtn.disabled = true;
-            
-            setTimeout(() => {
-                closeModal('signup');
-                signupBtn.innerHTML = originalText;
-                signupBtn.disabled = false;
-                // Clear form
-                document.getElementById('signupName').value = '';
-                document.getElementById('signupEmail').value = '';
-                document.getElementById('signupPhone').value = '';
-                document.getElementById('signupPassword').value = '';
-                alert('🎉 Account Created Successfully!\n\nWelcome to CarbonGrid! Now browse jobs and click "Apply Now" to apply.');
-            }, 1500);
         }
 
         function toggleMobileNav() {
